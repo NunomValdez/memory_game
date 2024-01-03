@@ -1,19 +1,18 @@
-import Card from "./Card";
+import CardsGrid from "./CardsGrid";
 
 /* eslint-disable react/prop-types */
 export default function GameBoard({
   data,
   duplicatedImagesArray,
   handleImageClick,
+  isPair,
 }) {
   return (
     <>
-      <h1 className="text-3xl font-bold underline justify-center">
-        Memory Game!
-      </h1>
       <div className="max-w-7xl ">
         {data ? (
-          <Card
+          <CardsGrid
+            isPair={isPair}
             duplicatedImagesArray={duplicatedImagesArray}
             handleImageClick={handleImageClick}
           />
