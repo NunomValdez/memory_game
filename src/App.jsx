@@ -2,24 +2,14 @@ import { useState, useEffect } from "react";
 // import { createClient } from "pexels";
 import * as mockedData from "./mocked_data_pexels.json";
 import GameBoard from "./components/GameBoard";
-// import _ from "lodash";
 
 // const API_KEY = import.meta.env.VITE_API_PEXELS_TOKEN;
 // const client = createClient(API_KEY);
 
-//FIXME: uncomment all this when saving the app to GitHub!
-
 function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(mockedData.photos); //responsible for the data fetched from Pexel
   const [imageClicked, setImageClicked] = useState(null);
-  const [isPair, setIsPair] = useState(false);
-  // const [visibleImages, setVisibleImages] = useState({});
-
-  const imagesArray = data?.length > 0 && [...data];
-  const duplicatedImagesArray =
-    imagesArray.length > 0 ? [...imagesArray, ...imagesArray] : [];
-  // Shuffle the images for the memory game
-  // duplicatedImagesArray.sort(() => Math.random() - 0.5);
+  const [gameCards, setGameCards] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,22 +24,44 @@ function App() {
         // mockedData.photos.forEach((photo) => {
         //   initialVisibility[`${photo.id}`]; //= false;
         // });
-        // setImageClicked(initialVisibility);
+        // const imagesArray = data.length > 0 && [...data];
+        //FIXME: this must come from the PEXEL API in the future
+        const processedData = mockedData.photos.map((photo) => ({
+          ...photo,
+          isFlipped: false,
+          isDisabled: false,
+        }));
+        setGameCards([...processedData, ...processedData]);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     };
-
     fetchData();
   }, []);
 
-  const handleImageClick = (e, photo, divRef) => {
-    console.log(photo.id);
+  const handleImageClick = (photo, photoIndex) => {
+    console.log(gameCards);
+    setGameCards((prevGameCards) => {
+      return prevGameCards.map((card, index) => {
+        if (index === photoIndex) {
+          return { ...card, isFlipped: true };
+        }
+        return card;
+      });
+    });
+
     setImageClicked(photo.id);
-    imageClicked !== null && photo.id === imageClicked
-      ? setIsPair(true)
-      : setIsPair(false);
-    divRef.current.style.display = "none";
+
+    if (imageClicked !== null && photo.id === imageClicked) {
+      setGameCards((prevGameCards) => {
+        return prevGameCards.map((card) => {
+          if (card.id === imageClicked) {
+            return { ...card, isDisabled: true };
+          }
+          return card;
+        });
+      });
+    }
   };
 
   return (
@@ -58,12 +70,11 @@ function App() {
         Memory Game!
       </h1>
       <GameBoard
-        isPair={isPair}
+        // isPair={isPair}
         data={data}
-        duplicatedImagesArray={duplicatedImagesArray}
+        duplicatedImagesArray={gameCards}
         handleImageClick={handleImageClick}
       />
-      {isPair && <p>This is a pair</p>}
     </section>
   );
 }
