@@ -3,18 +3,28 @@
 export default function Card({ photo, handleImageClick, photoIndex }) {
   const { id, alt, src } = photo;
 
-  const theOpacity = photo.isFlipped ? "0" : "100";
-  const isDisabled = photo.isDisabled ? "hidden" : "";
+  // Apply the flip-card and hide-image classes when the card is flipped
+  const cardAnimationClass = photo.isFlipped ? "flip-card" : "";
+  const imageAnimationClass = !photo.isFlipped ? "hide-image" : "";
 
-  const dynamicClasses = `opacity-${theOpacity} absolute top-0 left-0 w-full h-full bg-red-500`;
+  // const isPairFound = photo.isDisabled ? "bg-gray-500" : "";
 
   return (
     <button
-      className={`transition-all duration-500 relative rounded-lg m-1 w-full h-full ${isDisabled}`}
+      className={` flex justify-center transition-all duration-500 relative  rounded-lg m-1 w-full h-full`}
       onClick={() => handleImageClick(photo, photoIndex)}
+
+      // disabled={isPairFound}
     >
-      <div className={`${dynamicClasses}`}></div>
-      <img src={`${src.small}`} alt={alt} id={id} className={``} />
+      <div
+        className={`${cardAnimationClass} absolute top-0 left-0 w-full h-full bg-red-500 rounded-lg`}
+      ></div>
+      <img
+        src={src.small}
+        alt={alt}
+        id={id}
+        className={`object-center rounded-lg ${imageAnimationClass}`}
+      />
     </button>
   );
 }

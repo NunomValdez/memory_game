@@ -5,6 +5,7 @@
 @keyframes hideCard {
   0%, 70% {
     transform: rotateX(0deg);
+    /* background-color: white; */
   }
   100% {
     transform: rotateX(180deg);
@@ -22,10 +23,11 @@
 
 /* Define classes for animations */
 .flip-card {
-  animation: hideCard 1s forwards;
+  opacity: 0;
+  /* animation: hideCard 1s forwards; */
 }
 
 .hide-image {
-  animation: hideImage 1s forwards;
+  opacity: 0;
+  /* animation: hideImage 1s forwards; */
 }
-
