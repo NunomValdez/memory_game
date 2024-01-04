@@ -1,4 +1,11 @@
 import { useEffect, useRef, useContext } from "react";
+import {
+  Routes,
+  Route,
+  // Outlet, Link
+} from "react-router-dom";
+import ScoreModal from "./components/ScoreModal";
+import UserNameForm from "./components/User";
 
 import GameBoard from "./components/GameBoard";
 import { GameContext } from "./context-provider/ContextProvider";
@@ -62,17 +69,28 @@ function App() {
       console.log("same card");
     }
   };
+  {
+    winningPairs.length === 6 && alert("Winner!");
+  }
 
   return (
     <section className="py-10 flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold underline justify-center">
-        {playerName}
+        {`${playerName}'s Game`}
       </h1>
-      <GameBoard
-        duplicatedImagesArray={gameCards}
-        handleImageClick={handleImageClick}
-      />
-      {winningPairs.length === 6 && alert("Winner!")}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <GameBoard
+              duplicatedImagesArray={gameCards}
+              handleImageClick={handleImageClick}
+            />
+          }
+        />
+        <Route path="user" element={<UserNameForm />} />
+        <Route path="score" element={<ScoreModal />} />
+      </Routes>
     </section>
   );
 }

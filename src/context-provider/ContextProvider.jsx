@@ -16,7 +16,8 @@ export const GameContext = createContext({
 const ContextProvider = ({ children }) => {
   const [gameCards, setGameCards] = useState([]);
   const [winningPairs, setWinningPairs] = useState([]);
-  const [playerName, setPlayerName] = useState("Memory Game");
+  const storedPlayerName = localStorage.getItem("playerName") ?? "Memory";
+  const [playerName, setPlayerName] = useState(storedPlayerName);
   //   const previousIndex = useRef(-1);
   // const API_KEY = import.meta.env.VITE_API_PEXELS_TOKEN;
   // const client = createClient(API_KEY);
