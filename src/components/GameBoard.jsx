@@ -1,14 +1,7 @@
 import Card from "./Card";
 
 /* eslint-disable react/prop-types */
-export default function GameBoard({
-  duplicatedImagesArray,
-  handleImageClick,
-  // isPair,
-}) {
-  //shuffle images
-  // duplicatedImagesArray.sort(() => Math.random() - 0.5);
-
+export default function GameBoard({ duplicatedImagesArray, handleImageClick }) {
   return (
     <div className="grid grid-rows-3 grid-cols-3 gap-4 justify-center justify-items-center p-4">
       {duplicatedImagesArray.map((photo, photoIndex) => (
