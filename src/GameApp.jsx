@@ -1,16 +1,12 @@
 import { useEffect, useRef, useContext } from "react";
-import {
-  Routes,
-  Route,
-  // Outlet, Link
-} from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import ScoreModal from "./components/ScoreModal";
-import UserNameForm from "./components/User";
-
 import GameBoard from "./components/GameBoard";
 import { GameContext } from "./context-provider/ContextProvider";
+import UserNameForm from "./components/UserNameForm";
+import NavBar from "./components/NavBar";
 
-function App() {
+function GameApp() {
   const {
     gameCards,
     setGameCards,
@@ -74,24 +70,28 @@ function App() {
   }
 
   return (
-    <section className="py-10 flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-bold underline justify-center">
-        {`${playerName}'s Game`}
-      </h1>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <GameBoard
-              duplicatedImagesArray={gameCards}
-              handleImageClick={handleImageClick}
-            />
-          }
-        />
-        <Route path="user" element={<UserNameForm />} />
-        <Route path="score" element={<ScoreModal />} />
-      </Routes>
-    </section>
+    <div className="flex h-screen">
+      <NavBar />
+      <section className="flex-1 py-10 flex flex-col items-center">
+        <h1 className="text-4xl font-bold text-blue-950 text-opacity-80 underline">
+          {`${playerName}'s Game`}
+        </h1>
+        <Routes>
+          <Route path="/" element={<UserNameForm />} />
+          <Route
+            path="game"
+            element={
+              <GameBoard
+                duplicatedImagesArray={gameCards}
+                handleImageClick={handleImageClick}
+              />
+            }
+          />
+          <Route path="scores" element={<ScoreModal />} />
+        </Routes>
+        <Outlet />
+      </section>
+    </div>
   );
 }
-export default App;
+export default GameApp;

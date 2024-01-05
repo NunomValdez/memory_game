@@ -1,19 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import ContextProvider from "./context-provider/ContextProvider.jsx";
-import { BrowserRouter as Router } from "react-router-dom";
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-// const router = createBrowserRouter([{ path: "/", Component: App }]);
+import { BrowserRouter } from "react-router-dom";
+import GameApp from "./GameApp.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router>
+    <BrowserRouter>
       <ContextProvider>
-        <App />
+        <GameApp />
       </ContextProvider>
-    </Router>
+    </BrowserRouter>
   </React.StrictMode>
 );

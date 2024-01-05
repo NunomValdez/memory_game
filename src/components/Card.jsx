@@ -12,7 +12,7 @@ export default function Card({ photo, handleImageClick, photoIndex }) {
       onClick={() => handleImageClick(photoIndex)}
     >
       <div
-        className={`${cardAnimationClass} absolute top-0 left-0 w-full h-full bg-red-500 rounded-lg`}
+        className={`${cardAnimationClass} absolute top-0 left-0 w-full h-full bg-indigo-500 rounded-lg`}
       ></div>
       <img
         src={src.small}
