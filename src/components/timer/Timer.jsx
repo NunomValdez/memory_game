@@ -1,10 +1,5 @@
 /* eslint-disable react/prop-types */
-// import ScoreModal from "./ScoreModal";
-import {
-  useEffect,
-  useContext,
-  // useRef
-} from "react";
+import { useEffect, useContext } from "react";
 import { GameContext } from "../../context-provider/ContextProvider";
 
 export default function Timer() {
@@ -12,12 +7,12 @@ export default function Timer() {
     setRunTimer,
     setSeconds,
     winningPairs,
+    setWinningPairs,
     playerName,
     setTimeScores,
     runTimer,
     seconds,
   } = useContext(GameContext);
-  // const winnerAddedRef = useRef(false);
 
   const startTimer = () => {
     setRunTimer(true);
@@ -49,19 +44,18 @@ export default function Timer() {
     }
   };
 
+  const isWinner = winningPairs.length === 6;
+
   useEffect(() => {
-    if (
-      winningPairs.length === 6
-      // !winnerAddedRef.current
-    ) {
+    if (isWinner) {
       const newWinnerData = { player: playerName, time: seconds };
       playerName !== null && seconds !== 0 && addWinnerData(newWinnerData);
       setTimeScores((prevScores) => [...prevScores, newWinnerData]);
       setRunTimer(false);
       setSeconds(0);
-      // winnerAddedRef.current = true; // Mark that winner data has been added
+      setWinningPairs([]);
     }
-  }, [winningPairs.length]);
+  }, [isWinner]);
 
   return (
     <>

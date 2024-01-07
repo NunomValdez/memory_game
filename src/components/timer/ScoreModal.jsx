@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { GameContext } from "../../context-provider/ContextProvider";
 
-export default function ScoreModal({ timerHistory }) {
+export default function ScoreModal() {
   const [open, setOpen] = useState(true);
   const [savedWinnerData, setSavedWinnerData] = useState([]);
+
+  const { timerHistory } = useContext(GameContext);
 
   const handleClose = () => setOpen(false);
 

@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { FormControl, Input } from "@mui/material";
 import { GameContext } from "../context-provider/ContextProvider";
-// import NavBar from "./NavBar";
 
 export default function UserNameForm() {
   const [userName, setUserName] = useState("");
@@ -26,7 +25,7 @@ export default function UserNameForm() {
   };
 
   return (
-    <div className="flex justify-center items-center w-full h-[70%]">
+    <div className="flex justify-center items-center w-full h-[50%]">
       <FormControl required className="font-sans pt-52">
         <label className="font-bold text-lg text-indigo-700">
           Hey there! What&apos;s your Name?
