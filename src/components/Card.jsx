@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 
+import { useContext } from "react";
+import { GameContext } from "../context-provider/ContextProvider";
+
 export default function Card({ photo, handleImageClick, photoIndex }) {
   const { id, alt, src } = photo;
+  const { runTimer } = useContext(GameContext);
 
-  const cardAnimationClass = photo.isFlipped ? "flip-card" : "";
-  const imageAnimationClass = !photo.isFlipped ? "hide-image" : "";
+  const cardAnimationClass = photo.isFlipped && runTimer ? "flip-card" : "";
+  const imageAnimationClass = !photo.isFlipped && runTimer ? "hide-image" : "";
 
   return (
     <button

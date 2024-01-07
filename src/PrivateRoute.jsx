@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
-import { NavLink, Route, Outlet } from "react-router-dom";
+import { Redirect, Route, Outlet } from "react-router-dom";
 import { GameContext } from "./context-provider/ContextProvider";
 import UserNameForm from "./components/UserNameForm";
 
@@ -13,7 +13,7 @@ export default function PrivateRoute() {
       {isKnownUser.playerName !== null ? (
         <Outlet />
       ) : (
-        <NavLink to={<UserNameForm />} />
+        <Redirect to={<UserNameForm />} />
       )}
     </Route>
   );

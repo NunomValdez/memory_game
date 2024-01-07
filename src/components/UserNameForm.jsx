@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { FormControl, Input } from "@mui/material";
 import { GameContext } from "../context-provider/ContextProvider";
+import { redirect } from "react-router-dom";
 
 export default function UserNameForm() {
   const [userName, setUserName] = useState("");
@@ -22,6 +23,7 @@ export default function UserNameForm() {
     setPlayerName(userName);
     localStorage.setItem("playerName", userName);
     setUserName("");
+    redirect("/game");
   };
 
   return (
