@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 // import ScoreModal from "./ScoreModal";
-import { useEffect, useContext, useRef } from "react";
+import {
+  useEffect,
+  useContext,
+  // useRef
+} from "react";
 import { GameContext } from "../../context-provider/ContextProvider";
 
 export default function Timer() {
@@ -13,12 +17,9 @@ export default function Timer() {
     runTimer,
     seconds,
   } = useContext(GameContext);
-  const winnerAddedRef = useRef(false);
+  // const winnerAddedRef = useRef(false);
 
   const startTimer = () => {
-    console.log(
-      "inside the starter timer function ____________________________________"
-    );
     setRunTimer(true);
   };
 
@@ -42,26 +43,23 @@ export default function Timer() {
       }
       existingData.push(newWinnerData);
       localStorage.setItem("winnerData", JSON.stringify(existingData));
+      setRunTimer(false);
     } catch (error) {
       console.error("Error updating winner data:", error);
     }
   };
 
   useEffect(() => {
-    if (winningPairs.length === 6 && !winnerAddedRef.current) {
+    if (
+      winningPairs.length === 6
+      // !winnerAddedRef.current
+    ) {
       const newWinnerData = { player: playerName, time: seconds };
-      addWinnerData(newWinnerData);
+      playerName !== null && seconds !== 0 && addWinnerData(newWinnerData);
       setTimeScores((prevScores) => [...prevScores, newWinnerData]);
       setRunTimer(false);
       setSeconds(0);
-      winnerAddedRef.current = true; // Mark that winner data has been added
-    }
-  }, [winningPairs.length]);
-
-  // Reset the ref when the game restarts
-  useEffect(() => {
-    if (winningPairs.length === 0) {
-      winnerAddedRef.current = false;
+      // winnerAddedRef.current = true; // Mark that winner data has been added
     }
   }, [winningPairs.length]);
 

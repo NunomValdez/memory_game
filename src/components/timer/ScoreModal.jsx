@@ -28,7 +28,7 @@ export default function ScoreModal({ timerHistory }) {
       {scores.map((score, index) => (
         <li
           key={index}
-          className="text-indigo-900"
+          className="text-indigo-900 text-center text-lg text-pretty"
         >{`Player: ${score.player} - Time: ${score.time}`}</li>
       ))}
     </ul>

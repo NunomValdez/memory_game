@@ -1,10 +1,23 @@
 import { useEffect, useRef, useContext } from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
-import ScoreModal from "./components/ScoreModal";
+import {
+  Routes,
+  Route,
+  Outlet,
+  // RouterProvider,
+  // createBrowserRouter,
+  // createRoutesFromElements,
+} from "react-router-dom";
+// import ScoreModal from "./components/timer/ScoreModal";
 import GameBoard from "./components/GameBoard";
-import { GameContext } from "./context-provider/ContextProvider";
+import {
+  GameContext,
+  // gameboardDataLoader,
+} from "./context-provider/ContextProvider";
 import UserNameForm from "./components/UserNameForm";
 import NavBar from "./components/NavBar";
+import ScoreModal from "./components/timer/ScoreModal";
+import Timer from "./components/timer/Timer";
+import Header from "./components/Header";
 
 function GameApp() {
   const {
@@ -13,7 +26,9 @@ function GameApp() {
     winningPairs,
     setWinningPairs,
     // setPlayerName,
-    playerName,
+    timeScores,
+    // setRunTimer,
+    // seconds,
   } = useContext(GameContext);
 
   useEffect(() => {
@@ -66,28 +81,54 @@ function GameApp() {
     }
   };
   {
-    winningPairs.length === 6 && alert("Winner!");
+    // when the user wins, we must store the playerName and the time score somewhere (localstorage) to store it, and be able to show it on the <ScoreModal />
+    // winningPairs.length === 6 && alert("Winner!");
   }
 
+  // const router = createBrowserRouter(
+  //   createRoutesFromElements(
+  //     <Route path="/" element={<NavBar />}>
+  //       <Route index element={<UserNameForm />} />
+  //       <Route
+  //         path="/game"
+  //         loader={gameboardDataLoader}
+  //         element={
+  //           <GameBoard
+  //             duplicatedImagesArray={gameCards}
+  //             handleImageClick={handleImageClick}
+  //           />
+  //         }
+  //       />
+  //       <Route path="/scores" element={<ScoreModal />} />
+  //     </Route>
+  //   )
+  // );
+
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen dark:bg-slate-50">
       <NavBar />
       <section className="flex-1 py-10 flex flex-col items-center">
-        <h1 className="text-4xl font-bold text-blue-950 text-opacity-80 underline">
-          {`${playerName}'s Game`}
-        </h1>
+        <Header />
         <Routes>
           <Route path="/" element={<UserNameForm />} />
           <Route
             path="game"
             element={
-              <GameBoard
-                duplicatedImagesArray={gameCards}
-                handleImageClick={handleImageClick}
-              />
+              <>
+                {" "}
+                <Timer />
+                <GameBoard
+                  duplicatedImagesArray={gameCards}
+                  handleImageClick={handleImageClick}
+                  timer={timeScores}
+                />
+              </>
             }
           />
-          <Route path="scores" element={<ScoreModal />} />
+          <Route
+            path="game/scores"
+            element={<ScoreModal timerHistory={timeScores} />}
+          />
         </Routes>
         <Outlet />
       </section>
