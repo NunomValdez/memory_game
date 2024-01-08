@@ -20,7 +20,7 @@ Before you begin, ensure you have the following installed on your system:
 3. **Setting Up Environment Variables**
    - You will need a Pexels API key to run this project.
    - Visit [Pexels API page](https://www.pexels.com/api/new/) and sign up to get your API key.
-   - Once you have your API key, create a `.env` file in the root directory of the project.
+   - Once you have your API key, create a `.env` file in the root directory of the project, or change the name of the existing .env_example file, and copy your API key, and paste it there.
    - Add the following line to your `.env` file: `VITE_API_PEXELS_TOKEN=your_api_key_here` (replace `your_api_key_here` with your actual API key).
 
 4. **Starting the Application**
@@ -29,4 +29,4 @@ Before you begin, ensure you have the following installed on your system:
    - Open your browser and navigate to `http://localhost:5173` (or the port indicated in your terminal).
 
 
-**Hope to chat to you soon! Thank you, Nuno**
+** Hope to chat to you soon! Thank you, Nuno **
