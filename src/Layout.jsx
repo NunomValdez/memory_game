@@ -7,7 +7,7 @@ export default function Layout() {
     <>
       <div className="flex h-screen dark:bg-slate-50">
         <NavBar />
-        <section className="flex-1 py-10 flex flex-col items-center">
+        <section className="flex-1 py-10 flex flex-col justify-center items-center">
           <Header />
           <Outlet />
         </section>

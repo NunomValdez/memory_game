@@ -19,20 +19,21 @@ function GameApp() {
 
   // Shuffle and reset the game board
   const shuffleAndResetBoard = () => {
-    const shuffled = [...gameCards].sort(() => Math.random() - 0.5);
-    shuffled.forEach((card) => (card.isFlipped = false));
-    setGameCards(shuffled);
+    const shuffledBoard = [...gameCards.sort(() => Math.random() - 0.5)];
+    shuffledBoard.forEach((card) => (card.isFlipped = false));
+    setGameCards(shuffledBoard);
     setWinningPairs([]);
   };
 
+  //Verify if the player is a winner
   useEffect(() => {
-    if (winningPairs.length === 6) {
+    if (winningPairs.length === 6 || runTimer === 0) {
       shuffleAndResetBoard();
     }
-  }, [winningPairs, setGameCards, setWinningPairs]);
+  }, [winningPairs, runTimer]);
 
   const checkMatch = (currentPhotoIndex) => {
-    // define the logic to show the card when is NOT a match as well, for 1sec, and then flip them again
+    // Define the logic to show the card when is NOT a match as well, for 1sec, and then flip them again
     if (
       gameCards[previousImageIndex.current].id ===
         gameCards[currentPhotoIndex].id &&
@@ -57,8 +58,10 @@ function GameApp() {
   };
 
   const handleImageClick = (currentPhotoIndex) => {
+    if (!runTimer) {
+      alert("Click start");
+    }
     gameCards[currentPhotoIndex].isFlipped = true;
-
     if (currentPhotoIndex !== previousImageIndex.current && runTimer) {
       if (previousImageIndex.current === -1) {
         previousImageIndex.current = currentPhotoIndex;
@@ -72,12 +75,14 @@ function GameApp() {
       console.log("same card");
     }
   };
+  {
+    winningPairs.length === 6 && alert("You&apos;re a Winner!");
+  }
 
   return (
     <div className="flex h-screen dark:bg-slate-50">
       <section className="flex-1 pb-10 flex flex-col items-center">
         <Timer />
-        {winningPairs.length === 6 && <h3>You&apos;re a Winner! </h3>}
         <GameBoard
           duplicatedImagesArray={gameCards}
           handleImageClick={handleImageClick}

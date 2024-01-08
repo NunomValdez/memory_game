@@ -3,14 +3,18 @@ import { useState, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { GameContext } from "../../context-provider/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function ScoreModal() {
   const [open, setOpen] = useState(true);
   const [savedWinnerData, setSavedWinnerData] = useState([]);
-
   const { timerHistory } = useContext(GameContext);
+  const navigate = useNavigate();
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    navigate("/game");
+  };
 
   useEffect(() => {
     try {

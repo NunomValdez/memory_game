@@ -44,7 +44,7 @@ export default function Timer() {
     }
   };
 
-  const isWinner = winningPairs.length === 6;
+  const isWinner = winningPairs.length === 6 && runTimer;
 
   useEffect(() => {
     if (isWinner) {
@@ -55,11 +55,13 @@ export default function Timer() {
       setSeconds(0);
       setWinningPairs([]);
     }
-  }, [isWinner]);
+  }, [isWinner, runTimer]);
 
   return (
     <>
-      <h1 className="text-xl text-lime-950 mb-5">Are you ready? Click Start</h1>
+      <h1 className="text-xl text-lime-950 mb-5">
+        Are you ready? Click Start to start playing
+      </h1>
       <div className="flex border border-spacing-0 p-2 border-indigo-200 rounded-2xl mb-10">
         <h2 className="text-xl text-indigo-800 pl-4">Timer</h2>
         <h3 className="text-xl px-4 text-indigo-800 underline underline-offset-4 ">
