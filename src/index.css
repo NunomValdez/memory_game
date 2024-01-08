@@ -21,7 +21,6 @@
   }
 }
 
-/* Define classes for animations */
 .flip-card {
   opacity: 0;
   /* animation: hideCard 1s forwards; */

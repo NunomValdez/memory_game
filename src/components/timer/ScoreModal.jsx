@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -27,8 +26,6 @@ export default function ScoreModal() {
       console.error("Error parsing winner data:", error);
     }
   }, []);
-
-  console.log(savedWinnerData);
 
   const renderScores = (scores) => (
     <ul>

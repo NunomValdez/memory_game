@@ -1,7 +1,7 @@
 import Card from "./Card";
+import PropTypes from "prop-types";
 
-/* eslint-disable react/prop-types */
-export default function GameBoard({ duplicatedImagesArray, handleImageClick }) {
+const GameBoard = ({ duplicatedImagesArray, handleImageClick }) => {
   return (
     <>
       <div className="grid grid-rows-3 grid-cols-4 gap-6 justify-center">
@@ -16,4 +16,10 @@ export default function GameBoard({ duplicatedImagesArray, handleImageClick }) {
       </div>
     </>
   );
-}
+};
+GameBoard.propTypes = {
+  duplicatedImagesArray: PropTypes.array.isRequired,
+  handleImageClick: PropTypes.func.isRequired,
+};
+
+export default GameBoard;

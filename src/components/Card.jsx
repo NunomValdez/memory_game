@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
-
 import { useContext } from "react";
 import { GameContext } from "../context-provider/ContextProvider";
+import PropTypes from "prop-types";
 
-export default function Card({ photo, handleImageClick, photoIndex }) {
+const Card = ({ photo, handleImageClick, photoIndex }) => {
   const { id, alt, src } = photo;
   const { runTimer } = useContext(GameContext);
 
@@ -27,4 +26,22 @@ export default function Card({ photo, handleImageClick, photoIndex }) {
       />
     </button>
   );
-}
+};
+
+Card.propTypes = {
+  // photo is an object that should contain specific fields
+  photo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    alt: PropTypes.string.isRequired,
+    src: PropTypes.shape({
+      small: PropTypes.string.isRequired
+    }).isRequired,
+    isFlipped: PropTypes.bool.isRequired
+  }).isRequired,
+  // handleImageClick is a function
+  handleImageClick: PropTypes.func.isRequired,
+  // photoIndex is a number
+  photoIndex: PropTypes.number.isRequired
+};
+
+export default Card;
