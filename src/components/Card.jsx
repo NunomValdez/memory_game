@@ -14,6 +14,7 @@ export default function Card({ photo, handleImageClick, photoIndex }) {
     <button
       className={` flex justify-center transition-all duration-500 relative  rounded-lg m-1 w-full h-full`}
       onClick={() => handleImageClick(photoIndex)}
+      disabled={!runTimer}
     >
       <div
         className={`${cardAnimationClass} absolute top-0 left-0 w-full h-full bg-indigo-500 rounded-lg`}

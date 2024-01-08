@@ -13,44 +13,19 @@ import ScoreModal from "./components/timer/ScoreModal.jsx";
 import Layout from "./Layout.jsx";
 import UserNameForm from "./components/UserNameForm.jsx";
 import { gameboardDataLoader } from "./shared/loaderData";
-
-const savedPlayer = localStorage.getItem("playerName");
-console.log(savedPlayer);
+import PrivateRoute from "./PrivateRoute.jsx";
+import NotFound from "./components/NotFound.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<UserNameForm />} />
-        <Route
-          loader={gameboardDataLoader}
-          path="game"
-          element={
-            savedPlayer !== null && savedPlayer !== "" ? (
-              <GameApp />
-            ) : (
-              <UserNameForm />
-            )
-          }
-        />
-        <Route
-          path="game/scores"
-          element={
-            savedPlayer !== null && savedPlayer !== "" ? (
-              <ScoreModal />
-            ) : (
-              <UserNameForm />
-            )
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <div className="text-center text-2xl">Ups, page not Found</div>
-          }
-        />
+    <Route path="/" element={<Layout />}>
+      <Route index element={<UserNameForm />} />
+      <Route element={<PrivateRoute />}>
+        <Route loader={gameboardDataLoader} path="game" element={<GameApp />} />
+        <Route path="game/scores" element={<ScoreModal />} />
       </Route>
-    </>
+      <Route path="*" element={<NotFound />} />
+    </Route>
   )
 );
 
