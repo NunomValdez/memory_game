@@ -19,7 +19,6 @@ export const gameboardDataLoader = async () => {
       JSON.stringify([...processedData, ...processedData])
     ).sort(() => Math.random() - 0.5);
 
-    console.log(shuffledGameBoard);
     return shuffledGameBoard;
   } catch (error) {
     console.error("Error fetching data: ", error);
