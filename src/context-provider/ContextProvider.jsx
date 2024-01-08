@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { useState, createContext } from "react";
+import PropTypes from "prop-types";
 
 export const GameContext = createContext({
   gameCards: [],
@@ -46,5 +46,7 @@ const ContextProvider = ({ children }) => {
     </GameContext.Provider>
   );
 };
-
+ContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default ContextProvider;

@@ -14,7 +14,7 @@ export const gameboardDataLoader = async () => {
       isFlipped: false,
       isDisabled: false,
     }));
-
+    //Deep clone and shuffle of the duplicated array
     const shuffledGameBoard = JSON.parse(
       JSON.stringify([...processedData, ...processedData])
     ).sort(() => Math.random() - 0.5);
