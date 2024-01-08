@@ -5,8 +5,8 @@ Welcome to the Memory Game Project! This project is a dynamic web app that utili
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
-- Node.js
-- npm (Node Package Manager)
+- Node.js (v20.10.0)
+- npm (Node Package Manager v10.2.3)
 
 ## Setting Up the Project
 
