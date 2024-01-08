@@ -59,7 +59,7 @@ export default function Timer() {
 
   return (
     <>
-      <h1 className="text-xl text-lime-950 mb-5">
+      <h1 className="text-xl text-lime-950 pt-6 mb-5">
         Are you ready? Click Start to start playing
       </h1>
       <div className="flex border border-spacing-0 p-2 border-indigo-200 rounded-2xl mb-10">

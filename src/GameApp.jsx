@@ -75,9 +75,6 @@ function GameApp() {
       console.log("same card");
     }
   };
-  {
-    winningPairs.length === 6 && alert("You&apos;re a Winner!");
-  }
 
   return (
     <div className="flex h-screen dark:bg-slate-50">
