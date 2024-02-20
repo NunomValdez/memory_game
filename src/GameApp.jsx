@@ -5,14 +5,8 @@ import Timer from "./components/timer/Timer";
 import { useLoaderData } from "react-router-dom";
 
 function GameApp() {
-  const {
-    // gameCards,
-    setGameCards,
-    winningPairs,
-    setWinningPairs,
-    timeScores,
-    runTimer,
-  } = useContext(GameContext);
+  const { setGameCards, winningPairs, setWinningPairs, timeScores, runTimer } =
+    useContext(GameContext);
 
   const gameCards = useLoaderData();
   const previousImageIndex = useRef(-1);
