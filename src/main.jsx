@@ -15,6 +15,7 @@ import UserNameForm from "./components/UserNameForm.jsx";
 import { gameboardDataLoader } from "./shared/loaderData";
 import PrivateRoute from "./PrivateRoute.jsx";
 import NotFound from "./components/NotFound.jsx";
+import ComponentTest from "./components/ComponentTest.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route element={<PrivateRoute />}>
         <Route loader={gameboardDataLoader} path="game" element={<GameApp />} />
         <Route path="game/scores" element={<ScoreModal />} />
+        <Route path="game/component" element={<ComponentTest />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Route>

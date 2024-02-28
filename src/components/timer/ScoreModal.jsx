@@ -31,8 +31,8 @@ export default function ScoreModal() {
     <ul>
       {scores.map((score, index) => (
         <li
-          key={index}
-          className="text-indigo-900 text-center text-lg text-pretty"
+          key={index} //this shouldn't be the index, because if the array changes, the index will change too and probably have a couple of bugs => it must be unique everytime
+          className="text-indigo-900 text-center text-lg"
         >{`Player: ${score.player} - Time: ${score.time}`}</li>
       ))}
     </ul>
